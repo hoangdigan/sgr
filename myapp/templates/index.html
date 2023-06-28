@@ -1,0 +1,83 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-1ZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9s+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+{% endblock %}    
+
+{% block content %}
+
+<div class="wrapper">
+  <div class="title">Search Form
+  </div>
+  <form id = "post-form" method = "POST" data-netlify="true">
+    {% csrf_token %} 
+
+    <div class="form">
+      <div class="inputfield">
+        <label>Stock Code</label>
+        <input type="text" class="input" id="stock" name="stock" placeholder="Enter stock code" maxlength="3"
+          pattern="[A-Za-z]{1,32}" title="Enter stock code">
+      </div>      
+
+      <div class="inputfield">
+        <label for="">Tax Code</label>
+        <input type="text" class="input" id="tax" name="tax" placeholder="Enter Tax Code">
+      </div>
+
+      <div class="inputfield">
+        <label>Company Name</label>
+        <input type="text" class="input" id="name" name="name" placeholder="Enter company name">
+      </div>
+
+      <div class="inputfield" required>
+        <div data-netlify-recaptcha="true"></div>
+      </div>
+
+      <div class="inputfield btns" id="btn">        
+        <button type="submit" value="Register" class="btn">Submit</button>
+        <button type="reset" value="Reset" class="btn">Reset</button>
+      </div>
+
+      <p id='info' style="text-align: center; color: #fe1e50;"></p>      
+
+    </div>
+  </form>
+
+  <div class="vn-teal" style="text-align: center;">
+    <a href="{% url 'download' %}">Download </a>
+  </div>
+  
+
+</div>
+
+{% endblock %}      
+
+{% block scripts %}
+<script>
+ 
+  $(document).on('submit', '#post-form', function (e) {
+      e.preventDefault();
+      $.ajax({
+          type: 'POST',
+          url: "{% url 'enterprise' %}",
+          data: {
+            stock: $('#stock').val(),
+            tax: $('#tax').val(),
+            name: $('#name').val(),
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+          }
+      });
+      document.getElementById("info").innerHTML = "Your request available to download!";
+  })
+</script>
+
+{% endblock %}      
+
+
+
+

@@ -1,0 +1,43 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+
+{% block css %}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-1ZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9s+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+{% endblock %}    
+
+{% block content %}
+
+<div class="wrapper">
+  <div class="title">BONDS ISSUEES CONTACT INFO
+  </div>
+  <form data-netlify="true">
+    <div class="form">
+            
+        <p style="text-align: center; color: #fe1e50;">Your BONDS ISSUEES ADDRESS available to download!</p>
+      
+
+    </div>
+  </form>
+
+  <div class="vn-teal" style="text-align: center;">
+    <a href="{% url 'download' %}">Download </a>
+  </div>
+
+</div>
+
+{% endblock %}      
+
+{% block scripts %}
+
+
+{% endblock %}      
+
+
+
+
